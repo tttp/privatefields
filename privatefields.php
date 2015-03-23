@@ -8,13 +8,12 @@ function privatefields_civicrm_pageRun(&$page) {
     $custom= $page->get_template_vars("viewCustomData");
     foreach ($custom as $id => $groupwrap) {
       foreach ($groupwrap as $group) {
-	if (substr($group["name"], 0, 7) === "private") {
-	  unset($custom[$id]);
+      	if (strtolower(substr($group["name"], 0, 7)) === "private") {
+	        unset($custom[$id]);
           $page->assign ("viewCustomData", $custom);
-	}
+	      }
       }
     }
-//    $page->assign('coordinators', $coordinators);
   }
 }
 
