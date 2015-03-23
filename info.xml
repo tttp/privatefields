@@ -20,7 +20,7 @@
   <compatibility>
     <ver>4.5</ver>
   </compatibility>
-  <comments>Tip: if you want to make existing fields private, you need to change the machine name (use the api explorer)</comments>
+  <comments>Tip: if you want to make existing fields private, you need to change the name (use the api explorer)</comments>
   <civix>
     <namespace>CRM/Privatefields</namespace>
   </civix>
