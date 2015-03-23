@@ -4,18 +4,16 @@ require_once 'privatefields.civix.php';
 
 function privatefields_civicrm_pageRun(&$page) {
   $pageName = $page->getVar('_name');
-print_r($page);
-die ($pageName);
-  if ($pageName == 'CRM_Admin_Page_Tag') {
-    /*
-     * retrieve all tag enhanced data and put in array with tag_id as index
-     */
-    $enhancedTags = CRM_Enhancedtags_BAO_TagEnhanced::getValues(array());
-    $coordinators = array();
-    foreach ($enhancedTags as $enhancedTag) {
-      $coordinators[$enhancedTag['tag_id']] = CRM_Enhancedtags_BAO_TagEnhanced::getCoordinatorName($enhancedTag['coordinator_id']);
+  if ($pageName == 'CRM_Event_Page_EventInfo') {
+    $custom= $pageName->get_template_vars("$viewCustomData");
+    foreach ($custom as $id => $group) {
+      if (substr($group["name"], 0, 7) === "private") {
+        print_r($group);
+        unset($custom[$id]);
+      }
     }
-    $page->assign('coordinators', $coordinators);
+    print_r($custom);
+//    $page->assign('coordinators', $coordinators);
   }
 }
 
