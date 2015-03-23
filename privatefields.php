@@ -5,14 +5,15 @@ require_once 'privatefields.civix.php';
 function privatefields_civicrm_pageRun(&$page) {
   $pageName = $page->getVar('_name');
   if ($pageName == 'CRM_Event_Page_EventInfo') {
-    $custom= $pageName->get_template_vars("$viewCustomData");
-    foreach ($custom as $id => $group) {
-      if (substr($group["name"], 0, 7) === "private") {
-        print_r($group);
-        unset($custom[$id]);
+    $custom= $page->get_template_vars("viewCustomData");
+    foreach ($custom as $id => $groupwrap) {
+      foreach ($groupwrap as $group) {
+	if (substr($group["name"], 0, 7) === "private") {
+	  unset($custom[$id]);
+          $page->assign ("viewCustomData", $custom);
+	}
       }
     }
-    print_r($custom);
 //    $page->assign('coordinators', $coordinators);
   }
 }
